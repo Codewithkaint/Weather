@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>WEATHER</title>
+</head>
+
+<body>
+    {{>nav}}
+    <div class="container" id="search_box">
+        <input type="text" class="form-control" id="inp_box" placeholder="ENTER CITY NAME">
+        <button type="button" class="btn btn-danger" id="search">SEARCH</button>
+    </div>
+    <div id="result">
+        <div id="one">
+
+            <p id="day">TUESDAY</p>
+            <p id="date">21-Sept</p>
+        </div>
+        <hr>
+        <div id="two">
+            <p id="city">Enter City Name</p>
+            <div id="temp_info">
+                <p id="temp" class="hide"></p>
+                <p id="temp_status" class="hide"></p>
+            </div>
+        </div>
+    </div>
+
+
+    {{>foot}}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+    <script>
+        let enterDate = document.getElementById('date')
+        let enterDay = document.getElementById('day')
+
+        let weeks = ['Sun', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+        let monthsList = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+        let dateObj = new Date()
+        let days = weeks[dateObj.getDay()]
+        let month = monthsList[(dateObj.getMonth() + 1)]
+        let date = dateObj.getDate()
+        let hrs = dateObj.getHours()
+        let min = dateObj.getMinutes()
+        if (hrs > 12) {
+            hrs = hrs - 12
+            min = min + ' PM'
+        }
+
+        else if (hrs == 12) {
+            min = min + ' PM'
+        }
+        else {
+            min = min + ' AM'
+        }
+        if (min < 10) {
+            min = '0' + min
+
+        }
+
+        enterDate.innerHTML = `<b>${date}-${month} </b>`
+        enterDay.innerHTML = `<b>${days} </b>`
+
+
+
+    </script>
+</body>
+
+</html>
